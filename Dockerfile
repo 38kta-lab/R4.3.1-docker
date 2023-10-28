@@ -24,3 +24,6 @@ RUN R -e "remotes::install_github('YTLogos/gggenes')"
 
 # Create Volume file
 RUN mkdir Volumes
+
+# install libxt6
+RUN apt-get -y update; apt-get install -y libxt6
