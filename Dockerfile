@@ -6,6 +6,9 @@ RUN wget "https://github.com/shenwei356/seqkit/releases/download/v2.5.1/seqkit_l
 	tar zxvf /tmp/seqkit.tar.gz -C /usr/bin/ && rm /tmp/seqkit.tar.gz
 RUN apt-get update && apt-get install -y libxml2-dev
 RUN apt-get update && apt install -y libpng-dev
+RUN apt-get update && apt install -y libfontconfig1-dev
+RUN apt-get update && apt install -y libproj-dev
+
 
 # Install from CRAN
 RUN R -e "install.packages('BiocManager',dependencies=TRUE, repos='http://cran.rstudio.com/')"
@@ -23,10 +26,12 @@ RUN R -e "install.packages('remotes',dependencies=TRUE, repos='http://cran.rstud
 RUN R -e "install.packages('paletteer',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('rentrez',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('micropan',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('svglite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 
 # Install from Bioc
 RUN R -e "BiocManager::install('ggtree')"
 RUN R -e "BiocManager::install('ggtreeExtra')"
+RUN R -e "BiocManager::install('ggmsa')"
 
 # Create Volume file
 RUN mkdir Volumes
