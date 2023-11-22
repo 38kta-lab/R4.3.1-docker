@@ -32,6 +32,7 @@ RUN R -e "install.packages('svglite',dependencies=TRUE, repos='http://cran.rstud
 RUN R -e "BiocManager::install('ggtree')"
 RUN R -e "BiocManager::install('ggtreeExtra')"
 RUN R -e "BiocManager::install('ggmsa')"
+RUN R -e "BiocManager::install('msa')"
 
 # Create Volume file
 RUN mkdir Volumes
