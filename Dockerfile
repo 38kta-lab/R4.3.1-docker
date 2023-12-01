@@ -1,14 +1,15 @@
 FROM rocker/rstudio:4.3.1
 
-# install libxt6
+# install libxt6, libxml2-dev and libfontconfig1-dev for ggmsa
 RUN apt-get update && apt-get install -y wget libxt6
-RUN wget "https://github.com/shenwei356/seqkit/releases/download/v2.5.1/seqkit_linux_arm64.tar.gz" -O /tmp/seqkit.tar.gz && \
-	tar zxvf /tmp/seqkit.tar.gz -C /usr/bin/ && rm /tmp/seqkit.tar.gz
 RUN apt-get update && apt-get install -y libxml2-dev
 RUN apt-get update && apt install -y libpng-dev
 RUN apt-get update && apt install -y libfontconfig1-dev
 RUN apt-get update && apt install -y libproj-dev
 
+# install seqkit
+RUN wget "https://github.com/shenwei356/seqkit/releases/download/v2.5.1/seqkit_linux_arm64.tar.gz" -O /tmp/seqkit.tar.gz && \
+	tar zxvf /tmp/seqkit.tar.gz -C /usr/bin/ && rm /tmp/seqkit.tar.gz
 
 # Install from CRAN
 RUN R -e "install.packages('BiocManager',dependencies=TRUE, repos='http://cran.rstudio.com/')"
@@ -34,6 +35,5 @@ RUN R -e "BiocManager::install('ggtreeExtra')"
 RUN R -e "BiocManager::install('ggmsa')"
 RUN R -e "BiocManager::install('msa')"
 
-# Create Volume file
+# Create Volume directory
 RUN mkdir Volumes
-
